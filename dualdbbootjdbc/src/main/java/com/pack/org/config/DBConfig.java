@@ -19,25 +19,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class DBConfig {
 	
-	@Bean(name = "db1")
+	 @Bean(name = "db1")
 	 @ConfigurationProperties(prefix = "spring.datasource")
-	 public DataSource dataSource1() {
+	 public DataSource dataSourceLocal() {
 	  return DataSourceBuilder.create().build();
 	 }
 
-	 @Bean(name = "jdbcTemplate1")
-	 public JdbcTemplate jdbcTemplate1(@Qualifier("db1") DataSource ds) {
+	 @Bean(name = "jdbcTemplateLocal")
+	 public JdbcTemplate jdbcTemplateLocal(@Qualifier("db1") DataSource ds) {
 	  return new JdbcTemplate(ds);
 	 }
 	 
 	 @Bean(name = "db2")
 	 @ConfigurationProperties(prefix = "spring.second-db")
-	 public DataSource dataSource2() {
+	 public DataSource dataSourcePrd() {
 	  return  DataSourceBuilder.create().build();
 	 }
 
-	 @Bean(name = "jdbcTemplate2")
-	 public JdbcTemplate jdbcTemplate2(@Qualifier("db2") DataSource ds) {
+	 @Bean(name = "jdbcTemplatePrd")
+	 public JdbcTemplate jdbcTemplatePrd(@Qualifier("db2") DataSource ds) {
 	  return new JdbcTemplate(ds);
 	 }
 }
